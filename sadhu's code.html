@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dramatic Neon Text</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Pacifico&family=Orbitron&family=Monoton&display=swap');
+        
+        body {
+            background-color: black;
+            color: white;
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin-top: 20vh;
+        }
+        .neon {
+            font-size: 4rem;
+            font-weight: bold;
+            text-shadow: 0 0 15px #00ff00, 0 0 30px #00ff00, 0 0 45px #00ff00;
+            opacity: 0;
+            display: inline-block;
+            font-family: 'Orbitron', sans-serif;
+            letter-spacing: 12px;
+        }
+        #textContainer {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 30vh;
+        }
+        .hidden {
+            display: none;
+            font-size: 5rem;
+            color: cyan;
+            text-shadow: 0 0 10px cyan, 0 0 20px cyan, 0 0 30px cyan;
+            font-family: 'Monoton', cursive;
+            margin-bottom: 20px;
+        }
+        #hiddenImage {
+            display: none;
+            margin-top: 20px;
+            width: 200px;
+            display: block;
+            margin-left: auto;
+            margin-right: auto;
+        }
+    </style>
+</head>
+<body>
+    <div id="textContainer"></div>
+    <div id="finalText" class="hidden">Halabu</div>
+    <img id="hiddenImage" src="https://i.pinimg.com/236x/12/f6/8b/12f68b07a5d36616c87bae69772f7c7c.jpg" alt="Your Photo" style="display: none;">
+    
+    <script>
+        const text = "Sadhu wants to say you something".split(" ");
+        const container = document.getElementById("textContainer");
+        const finalText = document.getElementById("finalText");
+        const hiddenImage = document.getElementById("hiddenImage");
+        
+        text.forEach((word, index) => {
+            let span = document.createElement("span");
+            span.textContent = word + " ";
+            span.classList.add("neon");
+            container.appendChild(span);
+            
+            setTimeout(() => {
+                span.style.opacity = "1";
+            }, index * 500);
+        });
+        
+        document.addEventListener("click", () => {
+            if (container.style.display !== "none") {
+                finalText.style.display = "block";
+                container.style.display = "none";
+                setTimeout(() => {
+                    hiddenImage.style.display = "block";
+                }, 500); // Delay the image appearance slightly after "Halabu"
+            }
+        });
+    </script>
+</body>
+</html>
